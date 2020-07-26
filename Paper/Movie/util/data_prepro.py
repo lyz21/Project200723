@@ -4,7 +4,7 @@
 @Author : LiuYanZhe
 @File : data_prepro.py 
 @Software: PyCharm
-@Description: 数据预处理,将excel转化为csv格式，并把数据做部分处理
+@Description: 数据预处理,将excel转化为csv格式，并把数据做部分处理，统一时间格式
 """
 import pandas as pd
 
@@ -31,3 +31,25 @@ time = country['评论日期'].str.split(' ', expand=True).iloc[:, 0]
 print(time)
 country['评论日期'] = time
 country.to_csv('../data/countryComment.csv', index=False)
+
+'''统一时间格式'''
+
+comments = pd.read_csv('../data/countryComment.csv')
+print(comments)
+data = comments['评论日期'].str.split('-', expand=True)
+
+time_list = []
+for i in range(len(data)):
+    month = int(data[1][i])
+    day = int(data[2][i])
+    if month < 10:
+        data[1][i] = '0' + str(month)
+    if day < 10:
+        data[2][i] = '0' + str(day)
+print('data:', data)
+# '-'.join(data)
+data[3] = data[0] + '-' + data[1] + '-' + data[2]
+print(data)
+comments['评论日期'] = data[3]
+print(comments)
+comments.to_csv('../data/countryComment.csv', index=False)
