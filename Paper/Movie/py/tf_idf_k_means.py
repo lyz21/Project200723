@@ -5,6 +5,7 @@
 @File : tf_idf_k_means.py 
 @Software: PyCharm
 @Description: TF-IDF词向量化，k-means聚类,数据使用我和我的祖国+红海行动
+输入文件为excel文件，输出为png
 """
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer

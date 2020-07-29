@@ -5,6 +5,9 @@
 @File : word_cloud.py 
 @Software: PyCharm
 @Description: 绘制词云图
+先运行wordUtil.py中的get_words_list，获得分词文件，
+再加载获得的分词文件，转化为一维列表，
+依靠picUtil.py中的draw_word_cloud方法绘制词云图
 """
 import pandas as pd
 from collections import Counter

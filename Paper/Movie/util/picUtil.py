@@ -11,7 +11,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# 绘制词云图
+# 绘制词云图，输入为一维数组
 def draw_word_cloud(words_dic):
     font_path = 'C://Windows//Fonts//STXINGKA.TTF'
     # stop_words = pd.read_csv('../data/hit_stopwords.csv')

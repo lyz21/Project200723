@@ -23,6 +23,7 @@ def total_area(path, save_path):
     num_list = []
     for item in country:
         num_list.append(np.sum(item == '中国大陆'))
+    print(num_list)
     cn_pd = pd.DataFrame(score)
     cn_pd['国产电影数量'] = num_list
     cn_pd = cn_pd.iloc[list(cn_pd['评分'] != 'comment-time'), :]
@@ -32,4 +33,7 @@ def total_area(path, save_path):
 if __name__ == '__main__':
     # total_area('../data/我和我的祖国豆瓣影评.xlsx', '../data/country_area.csv')
     # total_area('../data/三块广告牌豆瓣影评T.xlsx', '../data/three_area.csv')
-    total_area('../data/红海行动豆瓣影评.xlsx', '../data/red_area.csv')
+    # total_area('../data/红海行动豆瓣影评.xlsx', '../data/red_area.csv')
+    total_area('../data/流浪地球豆瓣影评.xlsx', '../data/earth_area.csv')
+    # total_area('../data/至暗时刻豆瓣影评T.xlsx', '../data/dark_area.csv')
+    # total_area('../data/哪吒豆瓣影评.xlsx', '../data/nezha_area.csv')

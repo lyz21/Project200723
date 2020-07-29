@@ -5,6 +5,9 @@
 @File : emotion.py 
 @Software: PyCharm
 @Description: 分析情感倾向
+依赖../data/countryComment.csv文件
+更改csv文件路径和png存储路径，可分析不同电影
+其他设无需更改
 """
 from matplotlib.ticker import MultipleLocator
 from snownlp import SnowNLP

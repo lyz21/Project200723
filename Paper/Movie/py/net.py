@@ -5,6 +5,7 @@
 @File : net.py 
 @Software: PyCharm
 @Description: 网络图
+需要获得apriori.csv文件，格式为每一行是相关联的词
 """
 import pandas as pd
 import numpy as np

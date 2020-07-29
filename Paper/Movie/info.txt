@@ -1,0 +1,24 @@
+本项目文件对应于论文《基于数据挖掘的多角度评论分析》
+主要文件说明
+一、爬虫 netWorm文件夹
+1、download_ip、download_ip2为获取代理IP地址的文件，分别获得http和https（但是ip多不能用）
+2、doubanComment.py为爬取电影评论的文件。
+二、处理
+py文件夹，主要的处理分析文件
+1、emotion.py，分析情感-评分-支持度-时间的图
+爬虫结束后，先使用data_prepro.py文件将excel文件转为csv文件并存储。
+获得csv文件后再运行，得到png文件
+2、word_cloud.py，获得词云图
+先运行wordUtil.py中的get_words_list，获得分词文件，在加载获得的分词文件，依靠picUtil.py中的draw_word_cloud方法绘制词云图
+3、net.py，绘制网络图
+通过Apriori算法获得关联文件，文件类型如下所示
+        1,2,3,4
+        我,爱,祖国,强大
+        孩子,中国,祖国,强大
+获得文件后得到关联矩阵，并绘制图像
+4、tf_idf_k_means.py，向量化并聚类
+读取爬虫得到的excel文件，得到png文件
+5、score_byarea.py，喜好-平均评分
+需要先运行total_area.py获得需要的csv文件
+输入为对应电影的csv文件，输出为png文件
+
