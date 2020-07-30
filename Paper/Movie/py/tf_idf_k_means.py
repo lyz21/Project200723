@@ -12,6 +12,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+from textrank4zh import TextRank4Keyword
+
 from Paper.Movie.util import wordUtil
 
 # 设置显示pd所有行
@@ -90,15 +92,55 @@ score_mean1 = data_m.iloc[list(data_m['label'] == 0), 2].astype('float').mean()
 score_mean2 = data_m.iloc[list(data_m['label'] == 1), 2].astype('float').mean()
 score_mean3 = data_m.iloc[list(data_m['label'] == 2), 2].astype('float').mean()
 print('score_mean1:', score_mean1)
+'''获得每一类的关键词'''
+print('data:\n', data)
+label_0_list = data.loc[list(data['label'] == 0), '评论内容'].values
+label_1_list = data.loc[list(data['label'] == 1), '评论内容'].values
+label_2_list = data.loc[list(data['label'] == 2), '评论内容'].values
+sentence_0 = '。'.join(label_0_list)
+sentence_1 = '。'.join(label_1_list)
+sentence_2 = '。'.join(label_2_list)
+key_words_num = 4
+words = TextRank4Keyword()
+words.analyze(text=sentence_0, lower=True, window=key_words_num)
+keywords_dic_list = words.get_keywords(key_words_num, word_min_len=2)
+keywords_list = []
+for item in keywords_dic_list:
+    keywords_list.append(item['word'])
+keywords0 = ','.join(keywords_list)
 
+words = TextRank4Keyword()
+words.analyze(text=sentence_1, lower=True, window=key_words_num)
+keywords_dic_list = words.get_keywords(key_words_num, word_min_len=2)
+keywords_list = []
+for item in keywords_dic_list:
+    keywords_list.append(item['word'])
+keywords1 = ','.join(keywords_list)
+
+words = TextRank4Keyword()
+words.analyze(text=sentence_2, lower=True, window=key_words_num)
+keywords_dic_list = words.get_keywords(key_words_num, word_min_len=2)
+keywords_list = []
+for item in keywords_dic_list:
+    keywords_list.append(item['word'])
+keywords2 = ','.join(keywords_list)
+print(keywords0)
+print(keywords1)
+print(keywords2)
+# 解决中文显示问题，目前只知道黑体可行
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus']=False
 # 绘制降维后的分类结果
 plt.scatter(pca_results[:, 0], pca_results[:, 1], alpha=0.4, lw=1.2, s=comments_score, c=data['label'])
 # 绘制箭头
-plt.annotate('The average score is ' + str(round(score_mean1, 2)), xy=(-0.1, 0.4), xytext=(0, 0.8),
+plt.annotate('Type 1 \nAverage Score:' + str(round(score_mean1, 2)) + '\nKey Words:' + keywords0, xy=(-0.1, 0.4),
+             xytext=(0, 0.8), fontsize=8,
              arrowprops=dict(facecolor='red', alpha=0.5, shrink=0.05))  # 添加标注（箭头）（指向位置，文字位置，颜色，透明度，收缩比例）
-plt.annotate('The average score is ' + str(round(score_mean2, 2)), xy=(0, 0), xytext=(0.1, 0.3),
+plt.annotate('Type 2 \nAverage Score:' + str(round(score_mean2, 2)) + '\nKey Words:' + keywords1, xy=(0, 0),
+             xytext=(0.1, 0.3), fontsize=8,
              arrowprops=dict(facecolor='red', alpha=0.5, shrink=0.05))  # 添加标注（箭头）（指向位置，文字位置，颜色，透明度，收缩比例）
-plt.annotate('The average score is ' + str(round(score_mean3, 2)), xy=(0.5, 0.17), xytext=(0.4, 0.5),
+plt.annotate('Type 3 \nAverage Score:' + str(round(score_mean3, 2)) + '\nKey Words:' + keywords2, xy=(0.5, 0.17),
+             xytext=(0.4, 0.5), fontsize=8,
              arrowprops=dict(facecolor='red', alpha=0.5, shrink=0.05))  # 添加标注（箭头）（指向位置，文字位置，颜色，透明度，收缩比例）
 plt.savefig('../pic/k-means.png', dpi=400, bbox_inches='tight')
 plt.show()

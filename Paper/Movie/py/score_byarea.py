@@ -82,35 +82,35 @@ ax.plot(x1, y1, color='b', alpha=0.6)
 
 x_t = list(red_list.keys())
 y_t = list(red_list.values())
-ax.scatter(x_t, y_t, color='g', alpha=0.8, label='Operation Red Sea')
+ax.scatter(x_t, y_t, color='g', alpha=0.6, label='Operation Red Sea')
 a2, b2 = curve_fit(curve_fit_fun, x_t, y_t)[0]
 x2 = np.arange(min(x_t), max(x_t) + 1, 1)
 y2 = a2 * x2 + b2
-ax.plot(x2, y2, color='g', alpha=0.8)
+ax.plot(x2, y2, color='g', alpha=0.6)
 
 x_t = list(th_list.keys())
 y_t = list(th_list.values())
-ax.scatter(x_t, y_t, color='r', alpha=0.8, label='Three Billboards Outside')
+ax.scatter(x_t, y_t, color='r', alpha=0.6, label='Three Billboards Outside')
 a3, b3 = curve_fit(curve_fit_fun, x_t, y_t)[0]
 x3 = np.arange(min(x_t), max(x_t) + 1, 1)
 y3 = a3 * x3 + b3
-ax.plot(x3, y3, color='r', alpha=0.8)
+ax.plot(x3, y3, color='r', alpha=0.6)
 
 x_t = list(earth_list.keys())
 y_t = list(earth_list.values())
-ax.scatter(x_t, y_t, color='c', alpha=0.8, label='The Wandering Earth')
+ax.scatter(x_t, y_t, color='c', alpha=0.6, label='The Wandering Earth')
 a4, b4 = curve_fit(curve_fit_fun, x_t, y_t)[0]
 x4 = np.arange(min(x_t), max(x_t) + 1, 1)
 y4 = a4 * x4 + b4
-ax.plot(x4, y4, color='c', alpha=0.8)
+ax.plot(x4, y4, color='c', alpha=0.6)
 
 x_t = list(dark_list.keys())
 y_t = list(dark_list.values())
-ax.scatter(x_t, y_t, color='y', alpha=0.8, label='Ne Zha')
+ax.scatter(x_t, y_t, color='y', alpha=0.6, label='Ne Zha')
 a5, b5 = curve_fit(curve_fit_fun, x_t, y_t)[0]
 x5 = np.arange(min(x_t), max(x_t) + 1, 1)
 y5 = a5 * x5 + b5
-ax.plot(x5, y5, color='y', alpha=0.8)
+ax.plot(x5, y5, color='y', alpha=0.6)
 # 折线平滑
 # window_length = 3  # 窗口长度，越大平滑越明显
 # polyorder = 1  # 多项式拟合的阶数，越小平滑越明显
@@ -123,5 +123,5 @@ plt.ylabel('Average Score')
 plt.xlabel('Attention to domestic films')
 plt.xticks([1, 2, 3, 4, 5, 6, 7, 8], [0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1])
 # plt.xlim([0, 9])
-plt.savefig('../pic/like.png', dpi=400, bbox_inches='tight')
+plt.savefig('../pic/like.png', dpi=600, bbox_inches='tight')
 plt.show()
